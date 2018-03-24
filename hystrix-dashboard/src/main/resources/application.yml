@@ -33,5 +33,5 @@ eureka:
       availabilityZones: default
 
   instance:
-    #Virtual host name by which the clients identifies this service
+    #Virtual host name by which the clients identifies this com.threedeeapp.threedeemodel.service
     virtualHostName: ${spring.application.name}

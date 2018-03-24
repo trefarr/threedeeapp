@@ -11,7 +11,7 @@ import java.io.*;
 import java.nio.charset.Charset;
 
 /**
- * Simulate an event stream URL by retrieving pre-canned data instead of going to live servers.
+ * Simulate an event stream URL by retrieving pre-canned com.threedeeapp.threedeemodel.repository instead of going to live servers.
  */
 public class MockStreamServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -64,7 +64,7 @@ public class MockStreamServlet extends HttpServlet {
                         response.getWriter().flush();
                         batchCount++;
                     } catch (Exception e) {
-                        logger.warn("Exception writing mock data to output.", e);
+                        logger.warn("Exception writing mock com.threedeeapp.threedeemodel.repository to output.", e);
                         // most likely the user closed the connection
                         return;
                     }

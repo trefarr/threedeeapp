@@ -1,0 +1,31 @@
+
+DROP TABLE IF EXISTS `model_tag`;
+DROP TABLE IF EXISTS `model`;
+DROP TABLE IF EXISTS `classification`;
+
+CREATE TABLE `model`
+(
+  `id`              BIGINT(20) NOT NULL PRIMARY KEY,
+  `file_name`       VARCHAR(255)NOT NULL,
+  `created_on`      BIGINT(20),
+  CONSTRAINT UC_Tag UNIQUE (`file_name`)
+);
+CREATE UNIQUE INDEX UK_r2ahplt2rqwvx1pnd5bbo7o70 ON `model`(`id`);
+
+CREATE TABLE `classification`
+(
+  `id`            BIGINT(20) NOT NULL PRIMARY KEY,
+  `tag`           VARCHAR(100) NOT NULL,
+   CONSTRAINT UC_Tag UNIQUE (`tag`)
+);
+
+CREATE TABLE `model_tag`
+(
+  `model_id`      BIGINT(20) NOT NULL,
+  `tag_id`        BIGINT(20) NOT NULL,
+  CONSTRAINT `PRIMARY` PRIMARY KEY (`model_id`, `tag_id`),
+  CONSTRAINT FK_12vtt2maaj4yfrkbjmkf2qonz FOREIGN KEY (`model_id`) REFERENCES `model`(`id`),
+  CONSTRAINT FK_12vtt2maaj4yfrkbjmkf2qonq FOREIGN KEY (`tag_id`) REFERENCES `classification`(`id`)
+);
+
+

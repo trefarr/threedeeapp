@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: threedeemodel
+  profiles:
+    active: development
+  cloud:
+    config:
+      uri: http://configserver:8888
+encrypt:
+  failOnError: false

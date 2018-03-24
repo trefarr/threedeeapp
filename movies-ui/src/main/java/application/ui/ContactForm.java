@@ -12,7 +12,7 @@ import com.vaadin.ui.themes.ValoTheme;
  *
  * Create your own Vaadin components by inheritance and composition.
  * This is a form component inherited from VerticalLayout. Use
- * Use BeanFieldGroup to bind data fields from DTO to UI fields.
+ * Use BeanFieldGroup to bind com.threedeeapp.threedeemodel.repository fields from DTO to UI fields.
  * Similarly named field by naming convention or customized
  * with @PropertyId annotation.
  */
@@ -64,7 +64,7 @@ public class ContactForm extends FormLayout {
      * language you choose.
      * The new languages give you very powerful tools for organizing your code
      * as you choose. For example, you can implement the listener methods in your
-     * compositions or in separate controller classes and receive
+     * compositions or in separate com.threedeeapp.threedeemodel.controller classes and receive
      * to various Vaadin component events, like button clicks. Or keep it simple
      * and compact with Lambda expressions.
      */
@@ -73,7 +73,7 @@ public class ContactForm extends FormLayout {
             // Commit the fields from UI to DAO
             formFieldBindings.commit();
 
-            // Save DAO to backend with direct synchronous service API
+            // Save DAO to backend with direct synchronous com.threedeeapp.threedeemodel.service API
             getUI().userClient.createUser(contact);
 
             String msg = String.format("Saved '%s %s'.",

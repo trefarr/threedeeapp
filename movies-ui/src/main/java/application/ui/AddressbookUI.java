@@ -35,7 +35,7 @@ public class AddressbookUI extends UI {
 
     // ContactService is a in-memory mock DAO that mimics
     // a real-world datasource. Typically implemented for
-    // example as EJB or Spring Data based service.
+    // example as EJB or Spring Data based com.threedeeapp.threedeemodel.service.
     @Autowired
     UserClient userClient;
 
@@ -106,7 +106,7 @@ public class AddressbookUI extends UI {
 
     /* Choose the design patterns you like.
      *
-     * It is good practice to have separate data access methods that
+     * It is good practice to have separate com.threedeeapp.threedeemodel.repository access methods that
      * handle the back-end access and/or the user interface updates.
      * You can further split your code into classes to easier maintenance.
      * With Vaadin you can follow MVC, MVP or any other design pattern
