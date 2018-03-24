@@ -1,49 +1,67 @@
-hystrix:
-  image: kbastani/hystrix-dashboard
-  ports:
-   - "7979:7979"
-  links:
-   - gateway
-   - discovery
-discovery:
-  image: kbastani/discovery-microservice
-  ports:
-   - "8761:8761"
-configserver:
-  image: kbastani/config-microservice
-  ports:
-   - "8888:8888"
-  links:
-   - discovery
-gateway:
-  image: kbastani/api-gateway-microservice
-  ports:
-   - "10000:10000"
-  links:
-   - discovery
-   - configserver
-   - user
-   - movie
-   - recommendation
-user:
-  image: kbastani/users-microservice
-  links:
-   - discovery
-   - configserver
-movie:
-  image: kbastani/movie-microservice
-  links:
-   - discovery
-   - configserver
-recommendation:
-  image: kbastani/recommendation-microservice
-  links:
-   - discovery
-   - configserver
-moviesui:
-  image: kbastani/movies-ui
-  ports:
-     - "9006:9006"
-  links:
-   - discovery
-   - configserver
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=dbpass
+      - MYSQL_DATABASE=dev
+  hystrix:
+    image: threedeeapp/hystrix-dashboard
+    ports:
+      - "7979:7979"
+# links:
+#   - gateway
+#   - discovery
+  discovery:
+    image: threedeeapp/discovery-microservice
+    ports:
+      - "8761:8761"
+  configserver:
+    image: threedeeapp/config-microservice
+    ports:
+      - "8888:8888"
+    depends_on:
+      - discovery
+#  links:
+#   - discovery
+  gateway:
+    image: threedeeapp/api-gateway-microservice
+    ports:
+      - "10000:10000"
+    links:
+      - discovery
+      - configserver
+      - threedeemodel
+  threedeemodel:
+    image: threedeeapp/threedeemodel-microservice
+    depends_on:
+      - discovery
+      - configserver
+      - mysql
+#  ports:
+#   - "6005:6005"
+#user:
+#  image: threedeeapp/users-microservice
+#  links:
+#  - discovery
+#   - configserver
+#movie:
+#  image: threedeeapp/movie-microservice
+#  links:
+#   - discovery
+ #  - configserver
+#recommendation:
+#  image: threedeeapp/recommendation-microservice
+#  links:
+#   - discovery
+#   - configserver
+#moviesui:
+#  image: threedeeapp/movies-ui
+#  ports:
+#     - "9006:9006"
+#  links:
+#   - discovery
+#   - configserver
+

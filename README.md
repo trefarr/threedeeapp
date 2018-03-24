@@ -14,11 +14,11 @@ Demonstrated concepts:
 
 ## Docker
 
-Each service is built and deployed using Docker. End-to-end integration testing can be done on a developer's machine using Docker compose.
+Each com.threedeeapp.threedeemodel.service is built and deployed using Docker. End-to-end integration testing can be done on a developer's machine using Docker compose.
 
 ## Polyglot Persistence
 
-One of the core concepts of this example project is how polyglot persistence can be approached in practice. Microservices in the project use their own database, while integrating with the data from other services through REST or a message bus.
+One of the core concepts of this example project is how polyglot persistence can be approached in practice. Microservices in the project use their own database, while integrating with the com.threedeeapp.threedeemodel.repository from other services through REST or a message bus.
 
 * Neo4j (graph)
 * MongoDB (document)
@@ -46,7 +46,7 @@ This project contains two discovery services, one on Netflix Eureka, and the oth
 
 ## API gateway
 
-Each microservice will coordinate with Eureka to retrieve API routes for the entire cluster. Using this strategy each microservice in a cluster can be load balanced and exposed through one API gateway. Each service will automatically discover and route API requests to the service that owns the route. This proxying technique is equally helpful when developing user interfaces, as the full API of the platform is available through its own host as a proxy.
+Each microservice will coordinate with Eureka to retrieve API routes for the entire cluster. Using this strategy each microservice in a cluster can be load balanced and exposed through one API gateway. Each com.threedeeapp.threedeemodel.service will automatically discover and route API requests to the com.threedeeapp.threedeemodel.service that owns the route. This proxying technique is equally helpful when developing user interfaces, as the full API of the platform is available through its own host as a proxy.
 
 # License
 
