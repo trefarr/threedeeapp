@@ -1,4 +1,4 @@
-package com.threedeeapp.threedeemodel.domain;
+package com.threedeeapp.threedeemodel.utilities;
 
 import java.util.Random;
 

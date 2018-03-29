@@ -1,5 +1,7 @@
 package com.threedeeapp.threedeemodel.domain;
 
+import com.threedeeapp.threedeemodel.utilities.MyMath;
+
 public class Face {
 
     private final int nverts =3;

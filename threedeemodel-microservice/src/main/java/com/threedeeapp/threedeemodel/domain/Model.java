@@ -1,7 +1,8 @@
 package com.threedeeapp.threedeemodel.domain;
 
 
-import org.springframework.data.annotation.CreatedDate;
+import com.threedeeapp.threedeemodel.service.TagService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ public class Model {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private  Long id;
 
-    @NotNull
+    @Column(unique=true, nullable=false)
     private String fileName;
 
     private Long createdAt;
@@ -26,19 +27,19 @@ public class Model {
             name = "model_tag",
             joinColumns = @JoinColumn(name = "model_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "id"))
-    private Set<Classification> classifications;
+    private Set<Tag> tags;
 
     protected Model() { }
 
     public Model(String fileName) {
         this.fileName = fileName;
-        this.classifications = new HashSet<>();
+        this.tags = new HashSet<>();
         createdAt = new Date().getTime();
     }
 
-    public Model(String fileName, Set<Classification> classifications) {
+    public Model(String fileName, Set<Tag> tags) {
         this.fileName = fileName;
-        this.classifications = classifications;
+        this.tags = tags;
         createdAt = new Date().getTime();
     }
 
@@ -66,8 +67,8 @@ public class Model {
         this.createdAt = createdAt;
     }
 
-       public void setClassifications(Set<Classification> classifications) {
-        this.classifications = classifications;
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
 }

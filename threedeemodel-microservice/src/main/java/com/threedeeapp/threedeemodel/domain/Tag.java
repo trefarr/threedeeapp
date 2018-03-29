@@ -6,22 +6,32 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Classification {
+public class Tag {
 
-    @Id @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long id;
-
-    @ManyToMany(mappedBy="classifications")
-    private Set<Model> models;
-
+    @Column(unique=true, nullable=false)
     private String tag;
 
-    protected Classification() {
+    @ManyToMany(mappedBy="tags")
+    private Set<Model> models;
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+
+    protected Tag() {
     }
 
-    public Classification(String tag) {
+    public Tag(String tag) {
         this.tag = tag;
         this.models = new HashSet<Model>();
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public Long getId() {
@@ -38,13 +48,5 @@ public class Classification {
 
     public void setModels(Set<Model> models) {
         this.models = models;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
     }
 }

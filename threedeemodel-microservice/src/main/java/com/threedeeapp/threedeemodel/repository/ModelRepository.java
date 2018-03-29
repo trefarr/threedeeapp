@@ -12,6 +12,6 @@ public interface ModelRepository extends PagingAndSortingRepository<Model, Long>
 
     Model findById(Long id);
 
-    List<Model> findByClassifications(String classification);
+    List<Model> findByTags(String tag);
 
 }

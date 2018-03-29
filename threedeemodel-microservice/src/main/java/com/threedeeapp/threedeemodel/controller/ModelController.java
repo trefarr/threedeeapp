@@ -1,6 +1,7 @@
 package com.threedeeapp.threedeemodel.controller;
 
 import com.threedeeapp.threedeemodel.domain.Mesh;
+import com.threedeeapp.threedeemodel.domain.Tag;
 import com.threedeeapp.threedeemodel.service.ModelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,9 +9,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.File;
+import java.util.Set;
 
 @RestController
 //to add swagger tag
+@RequestMapping("/models")
 public class ModelController {
 
     @Autowired
@@ -23,18 +26,14 @@ public class ModelController {
     }
 
     @RequestMapping(path = "/", method = RequestMethod.POST)
-    public Mesh createNewModel(@RequestParam("file")  MultipartFile file) {
-        return modelService.create(file);
+    public Mesh createNewModel(@RequestParam(value = "file", required=true)  MultipartFile file,
+                               @RequestParam(value = "tags", required=false) Set<String> tags) {
+        return modelService.create(file, tags);
     }
 
     @RequestMapping(path = "/test", method = RequestMethod.GET, name = "getTest")
     public String getTest() {
         return "testing 3dmodel com.threedeeapp.threedeemodel.service: test passed";
-    }
-
-    @RequestMapping(path ="/greeting", method = RequestMethod.GET, name = "greeting")
-    public String greeting() {
-        return "Hello from 3DModelEurekaClient!";
     }
 
 }

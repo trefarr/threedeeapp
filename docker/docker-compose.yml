@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   mysql:
     image: mysql:5.7
     ports:
@@ -7,41 +8,44 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=dbpass
       - MYSQL_DATABASE=dev
+
   hystrix:
     image: threedeeapp/hystrix-dashboard
     ports:
       - "7979:7979"
-# links:
-#   - gateway
-#   - discovery
+    depends_on:
+      - gateway
+      - discovery
+
   discovery:
     image: threedeeapp/discovery-microservice
     ports:
       - "8761:8761"
+
   configserver:
     image: threedeeapp/config-microservice
     ports:
       - "8888:8888"
     depends_on:
       - discovery
-#  links:
-#   - discovery
+
   gateway:
     image: threedeeapp/api-gateway-microservice
     ports:
       - "10000:10000"
-    links:
+    depends_on:
       - discovery
-      - configserver
-      - threedeemodel
+
   threedeemodel:
     image: threedeeapp/threedeemodel-microservice
     depends_on:
       - discovery
       - configserver
       - mysql
-#  ports:
-#   - "6005:6005"
+      - gateway
+    ports:
+      - "6005:6005"
+      - "9011:9011"
 #user:
 #  image: threedeeapp/users-microservice
 #  links:

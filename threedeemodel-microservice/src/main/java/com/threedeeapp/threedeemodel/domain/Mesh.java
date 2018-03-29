@@ -7,6 +7,7 @@ import java.io.IOException;
 import Jama.Matrix;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jogamp.opengl.GL2;
+import com.threedeeapp.threedeemodel.utilities.MyMath;
 import org.springframework.data.annotation.Id;
 
 @JsonIgnoreProperties(ignoreUnknown = true)

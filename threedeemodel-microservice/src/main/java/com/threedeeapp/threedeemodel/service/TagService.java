@@ -4,14 +4,12 @@ import com.threedeeapp.threedeemodel.domain.Mesh;
 import com.threedeeapp.threedeemodel.domain.Tag;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.util.Set;
 
-public interface ModelService {
+public interface TagService {
 
-    Mesh findByName(String name);
+    Tag findByTag(String tag);
 
-    Mesh create(MultipartFile file);
+    void create(String tag);
 
-    Mesh create(MultipartFile file, Set<String> tags);
 }
